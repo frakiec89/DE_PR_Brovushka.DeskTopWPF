@@ -24,5 +24,29 @@ namespace DE_PR_Brovushka.DeskTopWPF
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DB.MsSqlContext context = new DB.MsSqlContext();
+
+
+            DB.Department department = new DB.Department()
+            {
+                Name = "Admin"
+            };
+
+              DB.Department department1 = new DB.Department()
+               {
+                   Name = "Гость"
+               };
+
+            //   context.Departments.Add(department);
+            //  context.Departments.Add(department1);
+            //   context.SaveChanges();
+
+            MessageBox.Show(context.Departments.First().Name);
+
+
+        }
     }
 }
