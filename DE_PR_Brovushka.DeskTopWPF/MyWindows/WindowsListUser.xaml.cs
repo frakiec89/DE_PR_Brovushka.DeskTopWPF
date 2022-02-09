@@ -15,20 +15,27 @@ using System.Windows.Shapes;
 namespace DE_PR_Brovushka.DeskTopWPF.MyWindows
 {
     /// <summary>
-    /// Логика взаимодействия для WindowsAdmin.xaml
+    /// Логика взаимодействия для WindowsListUser.xaml
     /// </summary>
-    public partial class WindowsAdmin : Window
+    public partial class WindowsListUser : Window
     {
-        public WindowsAdmin()
+        public WindowsListUser()
         {
             InitializeComponent();
+
+            Loaded += WindowsListUser_Loaded;
         }
 
-        private void btListUser_Click(object sender, RoutedEventArgs e)
+        private void WindowsListUser_Loaded(object sender, RoutedEventArgs e)
         {
-            MyWindows.WindowsListUser windowsListUser = new MyWindows.WindowsListUser();
-            windowsListUser.Show(); 
-            Close();    
+            try
+            {
+                listBoxUser.ItemsSource = Service.UserService.GetUser(0, 20);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
