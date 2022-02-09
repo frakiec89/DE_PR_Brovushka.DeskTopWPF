@@ -12,6 +12,9 @@ namespace DE_PR_Brovushka.DeskTopWPF.DB
         public string Name { get; set; }
 
         public int DepartmentID { get; set; }
+
+        public  string  Password { get; set;}
+        
         public Department Department 
         { get; set; }
 

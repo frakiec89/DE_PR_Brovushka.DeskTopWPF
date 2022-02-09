@@ -5,11 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DE_PR_Brovushka.DeskTopWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button Click="Button_Click" 
-                Margin="207,70,162,146">
-            go</Button>
+        Title="Вход" SizeToContent="WidthAndHeight" >
+    <Grid Margin="50">
+        <StackPanel Margin="10" HorizontalAlignment="Stretch">
+            <Border BorderBrush="Black" BorderThickness="1" >
+                <StackPanel HorizontalAlignment="Center" Margin="5" MinWidth="150" Orientation="Horizontal">
+                    <Label MinWidth="50" HorizontalAlignment="Right">Логин</Label>
+                    <TextBox HorizontalAlignment="Stretch"  MinWidth="100" x:Name="tbName"/>
+                </StackPanel>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1">
+                <StackPanel HorizontalAlignment="Center"  Margin="5" MinWidth="150" Orientation="Horizontal">
+                    <Label MinWidth="50" HorizontalAlignment="Right" >Пароль</Label>
+                    <TextBox  HorizontalAlignment="Stretch" MinWidth="100" x:Name="tbPasswor"/>
+                </StackPanel>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1">
+                <Button x:Name="btGo" Margin="5" Click="btGo_Click"  Content="Вход" />
+            </Border>
+
+        </StackPanel>
+       
+        
+        
+
+
+
+
+
+
+
 
     </Grid>
 </Window>

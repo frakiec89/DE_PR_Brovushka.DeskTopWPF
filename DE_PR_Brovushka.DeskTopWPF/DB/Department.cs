@@ -12,6 +12,11 @@ namespace DE_PR_Brovushka.DeskTopWPF.DB
         [Key]
         public int DepartmentID { get; set; }
         public string Name { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
 

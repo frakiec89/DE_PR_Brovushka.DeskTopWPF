@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,28 +26,42 @@ namespace DE_PR_Brovushka.DeskTopWPF
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btGo_Click(object sender, RoutedEventArgs e)
         {
-            DB.MsSqlContext context = new DB.MsSqlContext();
-
-
-            DB.Department department = new DB.Department()
+            try
             {
-                Name = "Admin"
-            };
+                if (Service.AuthenticationService.IsTry(tbName.Text, tbPasswor.Text))
+                {
+                    switch (Service.AuthenticationService.GetUserType(tbName.Text, tbPasswor.Text))
+                    {
+                        case "Admin": RunAdmin(); break;
+                        case "Гость": RunUSer(); break;
+                        default: MessageBox.Show("Ошибка в роле пользователя"); break;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Невенрный логин  или  пароль");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
-              DB.Department department1 = new DB.Department()
-               {
-                   Name = "Гость"
-               };
+        private void RunUSer()
+        {
+          MyWindows.WindowUser windowUser = new MyWindows.WindowUser();
+            windowUser.Show();  
+            this.Close();   
+        }
 
-            //   context.Departments.Add(department);
-            //  context.Departments.Add(department1);
-            //   context.SaveChanges();
-
-            MessageBox.Show(context.Departments.First().Name);
-
-
+        private void RunAdmin()
+        {
+            MyWindows.WindowsAdmin windowUser = new MyWindows.WindowsAdmin();
+            windowUser.Show();
+            this.Close();
         }
     }
 }
