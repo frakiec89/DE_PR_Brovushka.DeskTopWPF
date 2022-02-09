@@ -37,5 +37,32 @@ namespace DE_PR_Brovushka.DeskTopWPF.MyWindows
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void btEnd_Click(object sender, RoutedEventArgs e)
+        {
+            MyWindows.WindowsAdmin windowsAdmin = new MyWindows.WindowsAdmin();
+            windowsAdmin.Show();
+            Close();
+        }
+
+        private void btAddUser_Click(object sender, RoutedEventArgs e)
+        {
+            MyWindows.AddUser addUser = new MyWindows.AddUser();  
+            addUser.Show();
+            Close();
+        }
+
+        private void listBoxUser_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var user = listBoxUser.SelectedItem as DB.User;
+            if (user != null)
+            {
+              var windows =  new MyWindows.WindowChangeUser(user);
+                windows.Show();
+                Close();
+            }
+
+
+        }
     }
 }

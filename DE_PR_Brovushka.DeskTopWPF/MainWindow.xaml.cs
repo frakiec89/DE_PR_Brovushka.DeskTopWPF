@@ -24,6 +24,9 @@ namespace DE_PR_Brovushka.DeskTopWPF
         public MainWindow()
         {
             InitializeComponent();
+            tbName.Text = "Ivan";
+            tbPasswor.Text = "123";
+            btGo.Focus();
         }
 
         private void btGo_Click(object sender, RoutedEventArgs e)
