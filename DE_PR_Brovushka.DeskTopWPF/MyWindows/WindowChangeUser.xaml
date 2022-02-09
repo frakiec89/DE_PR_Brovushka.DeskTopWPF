@@ -32,6 +32,11 @@
                 <Button x:Name="btGo" Margin="5" Click="btGo_Click"  Content="Сохранить" />
             </Border>
 
+            <Border BorderBrush="Black" BorderThickness="1">
+                <Button x:Name="btDell" Margin="5" Click="btDell_Click"  Content="Удалить" />
+            </Border>
+
+
         </StackPanel>
     </Grid>
 </Window>

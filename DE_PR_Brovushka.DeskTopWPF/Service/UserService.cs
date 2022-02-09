@@ -37,5 +37,12 @@ namespace DE_PR_Brovushka.DeskTopWPF.Service
             context.Users.Update(user);
             context.SaveChanges();
         }
+
+        internal static void DellUser(User user)
+        {
+            using DB.MsSqlContext context = new DB.MsSqlContext();
+            context.Users.Remove(user);
+            context.SaveChanges();
+        }
     }
 }

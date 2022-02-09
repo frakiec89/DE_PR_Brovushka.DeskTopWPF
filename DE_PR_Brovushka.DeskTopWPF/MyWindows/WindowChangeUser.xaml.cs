@@ -51,11 +51,32 @@ namespace DE_PR_Brovushka.DeskTopWPF.MyWindows
             }
             catch (Exception ex)
             {
-
                MessageBox.Show(ex.Message);
             }
+        }
 
-           
+        private void btDell_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Вы уверены"  , "предупреждение" , MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+            {
+                return;
+            }
+
+            try
+            {
+                Service.UserService.DellUser(User);
+                MessageBox.Show("Пользователь  Удален из бд");
+
+                MyWindows.WindowsListUser windowsListUser = new MyWindows.WindowsListUser();
+                windowsListUser.Show();
+                Close();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
 
         }
     }
