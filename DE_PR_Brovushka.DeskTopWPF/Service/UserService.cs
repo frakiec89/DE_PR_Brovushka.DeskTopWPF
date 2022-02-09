@@ -43,6 +43,13 @@ namespace DE_PR_Brovushka.DeskTopWPF.Service
             using DB.MsSqlContext context = new DB.MsSqlContext();
             context.Users.Remove(user);
             context.SaveChanges();
+
+            context.OldUsers.Add(new OldUser { Name = user.Name,  UserId=  user.UserID , 
+                DateRemove = DateTime.Now  ,
+                DepartmentName= user.Department.Name
+            }
+            );
+            context.SaveChanges();
         }
     }
 }

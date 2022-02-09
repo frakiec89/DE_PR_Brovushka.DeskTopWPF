@@ -20,6 +20,13 @@ namespace DE_PR_Brovushka.DeskTopWPF.MyWindows
             InitializeComponent();
             User=user;
             this.Loaded += WindowChangeUser_Loaded;
+            Closing += WindowChangeUser_Closed;
+        }
+
+        private void WindowChangeUser_Closed(object? sender, EventArgs e)
+        {
+            MyWindows.WindowsListUser w = new MyWindows.WindowsListUser();
+            w.Show();
         }
 
         private void WindowChangeUser_Loaded(object sender, RoutedEventArgs e)
@@ -44,9 +51,6 @@ namespace DE_PR_Brovushka.DeskTopWPF.MyWindows
                 }
                 Service.UserService.ChangeUser(User);
                 MessageBox.Show("Пользователь  обнавлен в бд");
-               
-                MyWindows.WindowsListUser windowsListUser = new MyWindows.WindowsListUser();
-                windowsListUser.Show();
                 Close();
             }
             catch (Exception ex)
@@ -66,9 +70,6 @@ namespace DE_PR_Brovushka.DeskTopWPF.MyWindows
             {
                 Service.UserService.DellUser(User);
                 MessageBox.Show("Пользователь  Удален из бд");
-
-                MyWindows.WindowsListUser windowsListUser = new MyWindows.WindowsListUser();
-                windowsListUser.Show();
                 Close();
             }
             catch (Exception ex)

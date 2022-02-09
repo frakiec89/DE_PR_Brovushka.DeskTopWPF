@@ -19,6 +19,9 @@ namespace DE_PR_Brovushka.DeskTopWPF.DB
         public DbSet<User> Users
         { get; set; }
 
+        public DbSet<OldUser> OldUsers
+        { get; set; }
+
 
         protected override void OnConfiguring
             (DbContextOptionsBuilder optionsBuilder)

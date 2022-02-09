@@ -23,6 +23,13 @@ namespace DE_PR_Brovushka.DeskTopWPF.MyWindows
         {
             InitializeComponent();
             this.Loaded += AddUser_Loaded;
+            Closing += AddUser_Closed;
+        }
+
+        private void AddUser_Closed(object? sender, EventArgs e)
+        {
+            MyWindows.WindowsListUser w = new MyWindows.WindowsListUser();
+            w.Show();
         }
 
         private void AddUser_Loaded(object sender, RoutedEventArgs e)
@@ -49,6 +56,7 @@ namespace DE_PR_Brovushka.DeskTopWPF.MyWindows
                     {
                         Service.UserService.AddUser(tbName.Text, tbPasswor.Text, ustype);
                         MessageBox.Show("Пользователь добавлен в бд");
+                        Close();  
                     }
                     catch (Exception ex)
                     {
@@ -60,8 +68,6 @@ namespace DE_PR_Brovushka.DeskTopWPF.MyWindows
             {
                 MessageBox.Show("Укажите роль пользователя");
             }
-          
-
         }
     }
 }
