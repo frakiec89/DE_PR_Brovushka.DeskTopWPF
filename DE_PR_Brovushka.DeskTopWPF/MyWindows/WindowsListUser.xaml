@@ -64,6 +64,29 @@
             <Button x:Name="btEnd" Content="В меню"  Click="btEnd_Click"/>
             <Button x:Name="btAddUser" Click="btAddUser_Click">добавить</Button>
         </StackPanel>
-        
+
+
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+            <TextBlock VerticalAlignment="Center" 
+                      HorizontalAlignment="Stretch"
+                       Margin="2" >поиск</TextBlock>
+            <TextBox  VerticalAlignment="Center" 
+                      HorizontalAlignment="Stretch"
+                      MinWidth="100"  Margin="2" x:Name= "tbSourse"></TextBox>
+
+            <TextBlock VerticalAlignment="Center" 
+                      HorizontalAlignment="Stretch"
+                       Margin="2" >сортировка</TextBlock>
+            <ComboBox Margin="2" VerticalAlignment="Center" 
+                      HorizontalAlignment="Stretch"
+                       Name="cbSort" MinWidth="100" ></ComboBox>
+
+            <TextBlock VerticalAlignment="Center" 
+                      HorizontalAlignment="Stretch"
+                       Margin="2" >Фильтр</TextBlock>
+            <ComboBox Margin="2" VerticalAlignment="Center" 
+                      HorizontalAlignment="Stretch"
+                       Name="cbFilter" MinWidth="100" ></ComboBox>
+        </StackPanel>
     </Grid>
 </Window>

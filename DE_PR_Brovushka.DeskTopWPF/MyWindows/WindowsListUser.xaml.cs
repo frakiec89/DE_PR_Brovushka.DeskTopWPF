@@ -31,6 +31,10 @@ namespace DE_PR_Brovushka.DeskTopWPF.MyWindows
             try
             {
                 listBoxUser.ItemsSource = Service.UserService.GetUser(0, 20);
+                cbSort.ItemsSource = Service.SortContentServise.SortUser();
+                cbSort.SelectedIndex = 0;
+                cbFilter.ItemsSource = Service.SortContentServise.FiltreUser();
+                cbFilter.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -61,8 +65,6 @@ namespace DE_PR_Brovushka.DeskTopWPF.MyWindows
                 windows.Show();
                 Close();
             }
-
-
         }
     }
 }
