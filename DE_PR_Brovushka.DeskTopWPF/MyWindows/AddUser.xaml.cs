@@ -32,6 +32,7 @@ namespace DE_PR_Brovushka.DeskTopWPF.MyWindows
             w.Show();
         }
 
+
         private void AddUser_Loaded(object sender, RoutedEventArgs e)
         {
             try

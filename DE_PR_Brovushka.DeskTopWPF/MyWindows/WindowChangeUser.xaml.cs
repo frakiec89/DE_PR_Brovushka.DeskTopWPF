@@ -13,7 +13,6 @@ namespace DE_PR_Brovushka.DeskTopWPF.MyWindows
     /// </summary>
     public partial class WindowChangeUser : Window
     {
-        
 
         DB.User User = null;
         public WindowChangeUser(DB.User user)

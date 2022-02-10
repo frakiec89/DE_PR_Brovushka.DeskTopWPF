@@ -22,7 +22,7 @@ namespace DE_PR_Brovushka.DeskTopWPF.DB
 
 
         private string _pathImage; 
-        public string PathImage { get => string.IsNullOrEmpty(_pathImage) ? @"pack://application:,,,/Image/picture.png" : _pathImage;
+        public string PathImage { get => string.IsNullOrEmpty(_pathImage) ? Service.ImageService.ImageNameSpase : _pathImage;
             set => _pathImage = value; }
     }
 }

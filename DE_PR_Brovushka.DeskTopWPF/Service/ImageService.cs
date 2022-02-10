@@ -8,6 +8,12 @@ namespace DE_PR_Brovushka.DeskTopWPF.Service
 {
     public class ImageService
     {
+
+        /// <summary>
+        /// Заглушка
+        /// </summary>
+        public const string ImageNameSpase = @"pack://application:,,,/Image/picture.png"; 
+
         public static List<Model.ImageUsercs> AllImageUrl ()
         {
             using DB.MsSqlContext db = new DB.MsSqlContext ();
@@ -15,7 +21,7 @@ namespace DE_PR_Brovushka.DeskTopWPF.Service
 
             foreach (var item in db.Users)
             {
-                if (item.PathImage.Contains(@"pack://application:,,,/Image/picture.png"))
+                if (item.PathImage.Contains(ImageNameSpase))
                 {
                     list.Add(new Model.ImageUsercs { Path = item.PathImage, Name = "Без картинки" });
                     continue;
