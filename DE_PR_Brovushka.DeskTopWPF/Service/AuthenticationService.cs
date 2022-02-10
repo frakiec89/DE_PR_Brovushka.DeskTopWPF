@@ -9,7 +9,7 @@ namespace DE_PR_Brovushka.DeskTopWPF.Service
 {
     internal class AuthenticationService
     {
-        internal static bool IsTry(string login, string password)
+        internal static  bool IsTry(string login, string password)
         {
             using DB.MsSqlContext db = new DB.MsSqlContext();
             return   db.Users.Any(x => x.Name == login && x.Password == password);

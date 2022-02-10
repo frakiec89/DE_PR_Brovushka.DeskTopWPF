@@ -29,11 +29,11 @@ namespace DE_PR_Brovushka.DeskTopWPF.MyWindows
             Loaded += WindowsListUser_Loaded;
         }
 
-        private void WindowsListUser_Loaded(object sender, RoutedEventArgs e)
+        private async void  WindowsListUser_Loaded(object sender, RoutedEventArgs e)
         {
             try
             {
-                users = Service.UserService.GetUser(0, 20);
+                users = await  Service.UserService.GetUser(0, 20);
                 listBoxUser.ItemsSource = users;
                 cbSort.ItemsSource = Service.SortContentServise.SortUser();
                 cbSort.SelectedIndex = 0;

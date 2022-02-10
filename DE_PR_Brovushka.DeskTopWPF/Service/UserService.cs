@@ -3,15 +3,18 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace DE_PR_Brovushka.DeskTopWPF.Service
 {
     internal class UserService
     {
-        internal static List<DB.User> GetUser(int count , int  ofset )
+        internal static async Task< List<DB.User>> GetUser(int count , int  ofset )
         {
             using DB.MsSqlContext mycontext = new DB.MsSqlContext();
-            return mycontext.Users.Include(c=>c.Department).Take(ofset).Skip(count).ToList();
+            var content =  await mycontext.Users.Include(c=>c.Department).Take(ofset).Skip(count).ToListAsync();
+            return content;
         }
 
         internal static void AddUser(string name , string password, Department ustype, System.Windows.Media.ImageSource source)
