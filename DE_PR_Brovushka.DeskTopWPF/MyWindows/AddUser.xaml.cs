@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 namespace DE_PR_Brovushka.DeskTopWPF.MyWindows
 {
     /// <summary>
-    /// Логика взаимодействия для AddUser.xaml
+    /// Логика  взаимодействия для AddUser.xaml
     /// </summary>
     public partial class AddUser : Window
     {
@@ -37,10 +37,10 @@ namespace DE_PR_Brovushka.DeskTopWPF.MyWindows
             try
             {
                 cbTypeUser.ItemsSource = Service.UserTypeService.GetTypeService();
+                ImageUser.Source = new BitmapImage(new Uri(new DB.User().PathImage ));
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
         }
@@ -54,7 +54,7 @@ namespace DE_PR_Brovushka.DeskTopWPF.MyWindows
                 {
                     try
                     {
-                        Service.UserService.AddUser(tbName.Text, tbPasswor.Text, ustype);
+                        Service.UserService.AddUser(tbName.Text, tbPasswor.Text, ustype , ImageUser.Source);
                         MessageBox.Show("Пользователь добавлен в бд");
                         Close();  
                     }
@@ -67,6 +67,15 @@ namespace DE_PR_Brovushka.DeskTopWPF.MyWindows
             else
             {
                 MessageBox.Show("Укажите роль пользователя");
+            }
+        }
+
+        private void ImageUser_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MyWindows.WindowImage image = new WindowImage();
+            if( image.ShowDialog()==true )
+            {
+                ImageUser.Source = new BitmapImage(image.PathSelect);
             }
         }
     }

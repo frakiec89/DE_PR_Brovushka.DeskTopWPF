@@ -14,7 +14,7 @@ namespace DE_PR_Brovushka.DeskTopWPF.Service
             return mycontext.Users.Include(c=>c.Department).Take(ofset).Skip(count).ToList();
         }
 
-        internal static void AddUser(string name , string password, Department ustype)
+        internal static void AddUser(string name , string password, Department ustype, System.Windows.Media.ImageSource source)
         {
             if (string.IsNullOrWhiteSpace(name))
             {
@@ -27,7 +27,9 @@ namespace DE_PR_Brovushka.DeskTopWPF.Service
             }
 
             using DB.MsSqlContext context = new DB.MsSqlContext();
-                    context.Users.Add(new User { Name= name, Password = password, DepartmentID=ustype.DepartmentID  });
+                    context.Users.Add(new User { Name= name, Password = password, DepartmentID=ustype.DepartmentID ,
+                    PathImage= source.ToString()
+                    });;
             context.SaveChanges();  
         }
 

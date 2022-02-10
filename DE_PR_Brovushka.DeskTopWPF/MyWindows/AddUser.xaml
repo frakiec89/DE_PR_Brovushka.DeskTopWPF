@@ -8,6 +8,15 @@
         Title="AddUser" Height="450" Width="800">
     <Grid>
         <StackPanel Margin="10" HorizontalAlignment="Stretch">
+           
+            <Border  Margin="10"
+                            MinHeight="150" MinWidth="150"
+                             Grid.Column="0" Grid.Row="0" Grid.RowSpan="3">
+                <Image MouseLeftButtonDown="ImageUser_MouseLeftButtonDown"   MaxHeight="150" MaxWidth="150"  x:Name="ImageUser"
+                                     ></Image>
+            </Border>
+           
+
             <Border BorderBrush="Black" BorderThickness="1" >
                 <StackPanel HorizontalAlignment="Center" Margin="5" MinWidth="150" Orientation="Horizontal">
                     <Label MinWidth="50" HorizontalAlignment="Right">Введите Логин</Label>

@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.ComponentModel.DataAnnotations;
 
 
@@ -18,5 +19,10 @@ namespace DE_PR_Brovushka.DeskTopWPF.DB
         public Department Department 
         { get; set; }
 
+
+
+        private string _pathImage; 
+        public string PathImage { get => string.IsNullOrEmpty(_pathImage) ? @"pack://application:,,,/Image/picture.png" : _pathImage;
+            set => _pathImage = value; }
     }
 }

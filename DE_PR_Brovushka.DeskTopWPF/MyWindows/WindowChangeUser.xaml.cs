@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 
 using System.Windows;
-
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace DE_PR_Brovushka.DeskTopWPF.MyWindows
 {
@@ -31,11 +32,12 @@ namespace DE_PR_Brovushka.DeskTopWPF.MyWindows
 
         private void WindowChangeUser_Loaded(object sender, RoutedEventArgs e)
         {
-           tbName.Text = User.Name;
-           tbPasswor.Text = User.Password;
-           var content  = Service.UserTypeService.GetTypeService();
-           cbTypeUser.ItemsSource = content;
-           cbTypeUser.SelectedIndex = cbTypeUser.Items.IndexOf(content.Single(x=>x.DepartmentID==User.DepartmentID));
+            tbName.Text = User.Name;
+            tbPasswor.Text = User.Password;
+            var content = Service.UserTypeService.GetTypeService();
+            cbTypeUser.ItemsSource = content;
+            cbTypeUser.SelectedIndex = cbTypeUser.Items.IndexOf(content.Single(x => x.DepartmentID == User.DepartmentID));
+            ImageUser.Source = new BitmapImage(new Uri( User.PathImage));
         }
 
         private void btGo_Click(object sender, RoutedEventArgs e)
@@ -49,8 +51,10 @@ namespace DE_PR_Brovushka.DeskTopWPF.MyWindows
                 {
                     User.Department = d;
                 }
+                User.PathImage = ImageUser.Source.ToString();
                 Service.UserService.ChangeUser(User);
-                MessageBox.Show("Пользователь  обнавлен в бд");
+                MessageBox.Show("Пользователь  обновлен в бд");
+             
                 Close();
             }
             catch (Exception ex)
@@ -79,6 +83,15 @@ namespace DE_PR_Brovushka.DeskTopWPF.MyWindows
             }
 
 
+        }
+
+        private void ImageUser_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            MyWindows.WindowImage image = new MyWindows.WindowImage();
+            if( image.ShowDialog()== true)
+            {
+                ImageUser.Source = new BitmapImage(image.PathSelect);
+            }
         }
     }
 }

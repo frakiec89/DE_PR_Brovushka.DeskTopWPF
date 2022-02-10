@@ -11,8 +11,6 @@ namespace DE_PR_Brovushka.DeskTopWPF.DB
             "User id=stud;" +
             "password=stud;";
 
-
-
         public DbSet<Department> Departments 
         { get; set; }
 

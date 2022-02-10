@@ -35,8 +35,10 @@
 
                         <Border
                             MinHeight="75" MinWidth="75"
-                            Background="Black"  Grid.Column="0" Grid.Row="0" Grid.RowSpan="3">
-                            
+                             Grid.Column="0" Grid.Row="0" Grid.RowSpan="3">
+                            <Image   Height="74" Width="74"  x:Name="ImageUser"
+                                     Source="{Binding PathImage}"
+                                     ></Image>
                         </Border>
 
                         <Label Grid.Row="0" Grid.Column="1"
