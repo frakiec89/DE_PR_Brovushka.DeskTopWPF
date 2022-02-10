@@ -11,12 +11,12 @@ namespace DE_PR_Brovushka.DeskTopWPF.Service
     {
         public static List<string> SortUser()
         {
-            return new List<string> { "Без сортировки", "по возрастанию", "по убыванию" };
+            return new List<string> { "Без сортировки", "по возрастанию", "по убыванию" , "по департаменту" };
         }
 
         internal static IEnumerable FiltreUser()
         {
-            return new List<string> { "Без фильтра" };
+            return new List<string> { "Без фильтра"  , "админы"  , "гости" }; // Грязно  - должно  из  бд 
         }
     }
     

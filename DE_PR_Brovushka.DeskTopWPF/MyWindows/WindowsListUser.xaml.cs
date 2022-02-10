@@ -19,6 +19,9 @@ namespace DE_PR_Brovushka.DeskTopWPF.MyWindows
     /// </summary>
     public partial class WindowsListUser : Window
     {
+
+        List<DB.User> users = new List<DB.User>(); // старт  контент
+
         public WindowsListUser()
         {
             InitializeComponent();
@@ -30,11 +33,15 @@ namespace DE_PR_Brovushka.DeskTopWPF.MyWindows
         {
             try
             {
-                listBoxUser.ItemsSource = Service.UserService.GetUser(0, 20);
+                users = Service.UserService.GetUser(0, 20);
+                listBoxUser.ItemsSource = users;
                 cbSort.ItemsSource = Service.SortContentServise.SortUser();
                 cbSort.SelectedIndex = 0;
                 cbFilter.ItemsSource = Service.SortContentServise.FiltreUser();
                 cbFilter.SelectedIndex = 0;
+                cbSort.SelectionChanged += CbSort_SelectionChanged;
+                tbSourse.TextChanged += TbSourse_TextChanged;
+                cbFilter.SelectionChanged += CbFilter_SelectionChanged;
             }
             catch (Exception ex)
             {
@@ -42,6 +49,7 @@ namespace DE_PR_Brovushka.DeskTopWPF.MyWindows
             }
         }
 
+       
         private void btEnd_Click(object sender, RoutedEventArgs e)
         {
             MyWindows.WindowsAdmin windowsAdmin = new MyWindows.WindowsAdmin();
@@ -66,5 +74,109 @@ namespace DE_PR_Brovushka.DeskTopWPF.MyWindows
                 Close();
             }
         }
+
+        private void TbSourse_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            cbFilter.SelectedIndex = 0;
+            cbSort.SelectedIndex=0;
+
+            if (string.IsNullOrWhiteSpace(tbSourse.Text))
+            {
+                listBoxUser.ItemsSource = users;
+                return;
+            }
+
+            var content = new List<DB.User>();
+            content.AddRange(users);
+            if (content != null)
+                listBoxUser.ItemsSource = content.Where
+                    (  (x=>  x.Name.ToLower().
+                    Contains(tbSourse.Text.ToLower()))
+                    );
+
+            return;
+        }
+
+
+        private void CbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            tbSourse.Clear();
+            cbFilter.SelectedIndex = 0; 
+            if (cbSort.SelectedIndex == 0)
+            {
+                listBoxUser.ItemsSource = users;
+                return;
+            }
+
+            //грязно  
+            if (cbSort.SelectedIndex == 1) // по  пользователю
+            {
+                var content = new List<DB.User>();
+                content.AddRange(users);
+                if (content != null)
+                    listBoxUser.ItemsSource = content.OrderBy(x => x.Name);
+                
+                return;
+            }
+
+            //грязно  
+            if (cbSort.SelectedIndex == 2) // по  пользователю
+            {
+                var content = new List<DB.User>();
+                content.AddRange(users);
+                if (content != null)
+                    listBoxUser.ItemsSource = content.OrderByDescending(x => x.Name);
+
+                return;
+            }
+
+            //грязно  
+            if (cbSort.SelectedIndex == 3) // по  пользователю
+            {
+                var content = new List<DB.User>();
+                content.AddRange(users);
+                if (content != null)
+                    listBoxUser.ItemsSource = content.OrderBy(x => x.DepartmentID);
+
+                return;
+            }
+        }
+
+        private void CbFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            tbSourse.Clear();
+            cbSort.SelectedIndex = 0;
+            if (cbFilter.SelectedIndex == 0)
+            {
+                listBoxUser.ItemsSource = users;
+                return;
+            }
+
+            //грязно  
+            if (cbFilter.SelectedIndex == 1) // Админов
+            {
+                var content = new List<DB.User>();
+                content.AddRange(users);
+                if (content != null)
+                    listBoxUser.ItemsSource = content.Where(x=>x.DepartmentID==1);
+
+                return;
+            }
+
+
+            //грязно  
+            if (cbFilter.SelectedIndex == 2) // гостй
+            {
+                var content = new List<DB.User>();
+                content.AddRange(users);
+                if (content != null)
+                    listBoxUser.ItemsSource = content.Where(x => x.DepartmentID == 2);
+
+                return;
+            }
+
+        }
+
+
     }
 }
